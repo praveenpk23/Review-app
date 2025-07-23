@@ -1,12 +1,24 @@
-# React + Vite
+# Review App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern feedback/review application built with **React** and **Vite**. This project demonstrates advanced React concepts such as props drilling, the Context API, and dynamic theming. Users can add, view, and delete feedback, with a responsive UI and theme toggle (light/dark mode).
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Add Feedback:** Users can submit feedback with validation (minimum 10 characters).
+- **Feedback List:** Displays all feedback entries with delete functionality.
+- **Feedback Count:** Shows the total number of feedback items.
+- **Theme Toggle:** Switch between light and dark modes; preference is saved in `localStorage`.
+- **Advanced React Patterns:**
+  - **Props Drilling:** Demonstrated in component hierarchy.
+  - **Context API:** Used for global state management (feedback data and theme).
+- **Reusable Components:** Button and Card components for consistent UI.
+- **Responsive Design:** Clean and adaptable layout.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [ESLint](https://eslint.org/) for code quality
+
+## Project Structure
