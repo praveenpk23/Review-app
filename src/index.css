@@ -1,0 +1,121 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+        background-color: rgb(168, 186, 202);
+
+}
+.Header{
+    padding: 20px 0px;
+   
+}
+
+.header-c{
+     display: flex;
+    justify-content: space-between;
+}
+
+.container{
+    width: 80%;
+    margin: 0px auto;
+}
+
+.card{
+    background-color: white;
+    padding: 50px;
+    border-radius: 20px;
+    margin-top: 30px;
+    text-align: center;
+    position: relative;
+}
+.card:last-child{
+    margin: 30px 0px;
+}
+
+.container-global{
+
+    width: 50%;
+    margin: 0px auto;
+}
+
+.card.reverse{
+    background-color: rgb(49, 49, 49);
+    color: white;
+}
+
+.delete{
+    position: absolute;
+    top:10px;
+    right:20px;
+     background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+.input-group{
+    display: flex;
+    justify-content: center;
+    gap:10px;
+    margin-top: 30px;
+}
+
+
+.input-group > input{
+    padding: 15px;
+    border-radius: 20px;
+    /* border: none; */
+    border: 1px solid gery;
+    width: 100%;
+}
+
+.btn{
+    padding: 10px 50px;
+    border-radius: 20px;
+    border: none ;
+    cursor: pointer;
+}
+
+.btn-primary{
+    background-color: blue;
+    color: white;
+}
+.btn-light{
+    background-color: white;
+    color: black;
+}
+.btn-dark{
+    background-color: rgb(20, 20, 20);
+    color: white;
+}
+
+.btn-secondary{
+    background-color: orangered;
+    color: white;
+}
+
+button:disabled{
+    background-color: grey;
+    color:white;
+    cursor:not-allowed;
+}
+
+.error{
+    color: red;
+}
+
+.feedback-length{
+    margin: 20px;
+}
+
+
+.dark{
+    background-color: black;
+}
+
+.light{
+    background-color: rgb(161, 156, 156);
+}
