@@ -21,4 +21,4 @@ A modern feedback/review application built with **React** and **Vite**. This pro
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [ESLint](https://eslint.org/) for code quality
 
-## Project Structure
+<!-- ## Project Structure -->
