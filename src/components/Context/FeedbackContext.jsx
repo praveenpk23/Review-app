@@ -102,7 +102,7 @@ const handleDelete =async (id)=>{
 //     const updatedFeedbackList = feedback.map((item)=>(item.id === id ? {...item,text:newText.text}  : item))
 //     console.log(updatedFeedbackList)
 //     setFeedback(updatedFeedbackList)
-//     setFeedbackEdit({item:{},edit:false})
+    // setFeedbackEdit({item:{},edit:false})
 
 // }
 
@@ -120,6 +120,7 @@ const handleUpdateText = async (id,newText) =>{
                 },
                 body:JSON.stringify(updatedFeedback)
             })
+            setFeedbackEdit({item:{},edit:false})
             fetchFeedbackFromJSON();
 
                 if (!respose.ok) throw new Error("Failed to update");
