@@ -11,7 +11,6 @@ const App = () => {
          <Header  text="Pk" bgColor="blue" textColor="white" />
             <div className="container-global">
               <FeedbackForm  />
-              <FeedbackLength  />
               <FeedbackList  />
             </div>
         </FeedbackProvider>

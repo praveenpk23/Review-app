@@ -29,7 +29,7 @@ useEffect(()=>{
 
     // setTheme(themeStore)
      if(theme == 'dark'){
-        document.body.style.backgroundColor = "grey";
+        document.body.style.backgroundColor = "#100f0f";
         }else if(theme == "light"){
         document.body.style.backgroundColor = "white";            
         }

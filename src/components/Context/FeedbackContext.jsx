@@ -1,52 +1,159 @@
-import { useState,createContext } from "react";
+import { useState,createContext, useEffect } from "react";
 
 const FeedbackContext = createContext();
 // console.log(FeedbackContext)
 
 
 export const FeedbackProvider =({children})=>{
-    const [feedback,setFeedback] = useState([
-        
-        {
-        id:1,
-        text:"This is context 1"
-        },
-        {
-        id:2,
-        text:"This is context 2"
-        },
-        {
-        id:3,
-        text:"This is context 3" 
-        },
-        {
-        id:4,
-        text:"This is context 4" 
-        },
-        
-        
-    ])
-    const handleAddText=(text)=>{
-  console.log(text)
-  const newId = feedback.length+1
-  console.log(newId)
-  text.id=newId
-  console.log(text)
-  const updatedFeedback = [text,...feedback]
-  console.log(updatedFeedback)
-  setFeedback(updatedFeedback)
+    const [feedback,setFeedback] = useState([])
+    const [loading,setLoading] = useState(false);
+    const url = "http://localhost:3000/posts"
+
+    const [feedbackEdit,setFeedbackEdit] = useState({
+        item:{},
+        edit:false
+    })
+
+    const handleSetFeedbackEdit = (item) =>{
+        console.log("Entered into function")
+        setFeedbackEdit({
+            item:item,
+            edit:true
+        })
+        console.log(feedbackEdit)
+    }
+
+
+
+
+//     const handleAddText=(text)=>{
+//   console.log(text)
+//   const newId = feedback.length+1
+//   console.log(newId)
+//   const newFeedback = {text:text.text}
+//   console.log(newFeedback)
+// //   const updatedFeedback = [text,...feedback]
+//   const updatedFeedback = [{  id: newId,...text }, ...feedback];
+
+//   console.log(updatedFeedback)
+//   setFeedback(updatedFeedback)
+// }
+
+// For json server 
+    const handleAddText= async (text)=>{
+        setLoading(true)
+  const newFeedback = {text:text.text}
+  console.log(newFeedback)
+           try{
+             const respose = await fetch(url,{
+                method:"POST",
+                headers:{
+                    "Content-type":"application/json"
+                },
+                body:JSON.stringify(newFeedback)
+            })
+            fetchFeedbackFromJSON();
+           if (!respose.ok) throw new Error("Failed to update");
+               
+           }catch(error){
+            console.error("Update Error:", error);
+                alert("Something went wrong while updating feedback.");
+           }finally{
+            setLoading(false)
+           }
 }
 
-const handleDelete =(id)=>{
+
+// const handleDelete =(id)=>{
+
+//   if(window.confirm("Are you sure to delete !")){
+//       setFeedback(feedback.filter((item)=>(item.id !== id)))
+//   }
+// }
+
+const handleDelete =async (id)=>{
 
   if(window.confirm("Are you sure to delete !")){
-      setFeedback(feedback.filter((item)=>(item.id !== id)))
+             setLoading(true);
+           try{
+             const respose = await fetch(url+`/${id}`,{
+                method:"DELETE"
+            })
+            fetchFeedbackFromJSON();
+
+            if (!respose.ok) throw new Error("Failed to update");
+               
+           }catch(error){
+            console.error("Update Error:", error);
+                alert("Something went wrong while updating feedback.");
+           }finally{
+            setLoading(false)
+           }
   }
 }
 
 
+// const handleUpdateText = (id,newText) =>{
+//     // const updatedFeedback = {id:id,text:newText.text}
+//     // const newFeedbackList  = feedback.filter((item)=>(item.id !== id))
+//     // console.log(newFeedbackList)
+
+//     // const updatedFeedbackList = [updatedFeedback,...newFeedbackList]
+//     const updatedFeedbackList = feedback.map((item)=>(item.id === id ? {...item,text:newText.text}  : item))
+//     console.log(updatedFeedbackList)
+//     setFeedback(updatedFeedbackList)
+//     setFeedbackEdit({item:{},edit:false})
+
+// }
+
+
+const handleUpdateText = async (id,newText) =>{
+    const updatedFeedback = {text:newText.text}
+    console.log(updatedFeedback)
+
+            setLoading(true);
+           try{
+             const respose = await fetch(url+`/${id}`,{
+               method:"PUT",
+                headers:{
+                    "Content-type":"application/json"
+                },
+                body:JSON.stringify(updatedFeedback)
+            })
+            fetchFeedbackFromJSON();
+
+                if (!respose.ok) throw new Error("Failed to update");
+               
+           }catch(error){
+            console.error("Update Error:", error);
+                alert("Something went wrong while updating feedback.");
+           }finally{
+            setLoading(false)
+           }
+            
+}
+
+useEffect(()=>{
+    fetchFeedbackFromJSON();
+},[])
+const fetchFeedbackFromJSON = async()=>{
+    setLoading(true)
+    try{
+        const response = await fetch(url)
+    const data = await response.json()
+    setFeedback(data)
+        console.log(data)
+    }catch(err){
+        console.log(err)
+        alert("Something went wrong:",err)
+    }finally{
+        setLoading(false)
+    }
+}
+
+
     return(
-        <FeedbackContext.Provider value={{feedback,handleDelete,handleAddText}}>
+        <FeedbackContext.Provider value={{loading,feedback,handleDelete,handleAddText,handleSetFeedbackEdit,handleUpdateText,feedbackEdit,setFeedbackEdit}}>
             {children}
         </FeedbackContext.Provider>
     )
