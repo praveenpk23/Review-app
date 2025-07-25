@@ -7,9 +7,9 @@ const FeedbackList = () => {
 
   const {feedback,loading} = useContext(FeedbackContext)
   // console.log(useContext(FeedbackContext))
-  // if(feedback.length === 0){
-  //   return <h1 style={{textAlign:"center",margin:"50px"}}>No Feedback yet</h1>
-  // }
+  if(feedback.length === 0){
+    return <h1 style={{textAlign:"center",margin:"50px"}}>No Feedback yet</h1>
+  }
   return (
     <>
     
