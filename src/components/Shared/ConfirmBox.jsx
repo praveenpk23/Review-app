@@ -5,7 +5,7 @@ const ConfirmBox = ({onCancel,onClick,message}) => {
     <div>
        <div className="confirm-overlay">
       <div className="confirm-box">
-        <p className="confirm-message">{message}</p>
+        <p className="confirm-message ">{message}</p>
         <div className="confirm-buttons">
           <button className="confirm-btn confirm" onClick={onClick} >Yes</button>
           <button className="confirm-btn cancel" onClick={onCancel} >No</button>
